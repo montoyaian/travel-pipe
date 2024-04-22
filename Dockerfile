@@ -1,21 +1,27 @@
 # Usa la imagen oficial de Python como base
-FROM python:3.9
+FROM python:3.12
 
-# Establece el directorio de trabajo dentro del contenedor
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Set an environment variable to enable unbuffered stdout and stderr
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory in the container to /app
 WORKDIR /app
 
-# Copia los archivos de requerimientos (requirements.txt) al contenedor
+# Copy the requirements.txt file from the build context to the container's working directory
 COPY requirements.txt .
 
-# Instala las dependencias
-RUN pip install  -r requirements.txt
+# Create a virtual environment named venv using the python interpreter
+RUN python -m venv venv
 
-# Copia tu aplicación FastAPI al contenedor
+RUN /bin/bash -c "source venv/bin/activate"
+
+RUN pip install -r requirements.txt
+
 COPY . .
 
-# Expone el puerto 80 (puedes cambiarlo según tus necesidades)
-EXPOSE 80
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
 
-# Define el comando para ejecutar tu aplicación
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
-
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
