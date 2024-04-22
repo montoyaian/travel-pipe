@@ -1,14 +1,21 @@
-# Usamos la imagen oficial de Python
+# Usa la imagen oficial de Python como base
 FROM python:3.9
 
-# Establecemos el directorio de trabajo en /app
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiamos todo el contenido del directorio de trabajo al contenedor
+# Copia los archivos de requerimientos (requirements.txt) al contenedor
+COPY requirements.txt .
+
+# Instala las dependencias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia tu aplicación FastAPI al contenedor
 COPY . .
 
-# Instalamos las dependencias
-RUN pip install -r requirements.txt
+# Expone el puerto 80 (puedes cambiarlo según tus necesidades)
+EXPOSE 80
 
-# Definimos el comando para ejecutar la aplicación FastAPI
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Define el comando para ejecutar tu aplicación
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+
