@@ -18,7 +18,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Expone el puerto 8000 (ajústalo según tus necesidades)
-EXPOSE 8000
+EXPOSE 8080
 
 # Comando para ejecutar la aplicación
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
