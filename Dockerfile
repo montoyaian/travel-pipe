@@ -15,7 +15,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copia el resto de los archivos de la aplicación
-COPY . .
+COPY . /app
 
 # Expone el puerto 8000 (ajústalo según tus necesidades)
 EXPOSE 8000
