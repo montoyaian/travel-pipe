@@ -1,5 +1,5 @@
 # Usa la imagen oficial de Python como base
-FROM python:3.12
+FROM python:3.11
 
 
 # Set the working directory in the container to /app
