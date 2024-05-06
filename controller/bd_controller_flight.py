@@ -8,7 +8,7 @@ DELETE_SUCCESS = {"message": "eliminacion completa"}
 
 
 
-connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
 cursor = connection.cursor()
 class DatabaseControllerFlight():
     """
@@ -16,7 +16,7 @@ class DatabaseControllerFlight():
     """
 
     def insert_flight(self, flight: Firstclass or Standartclass):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         cursor = connection.cursor()
         cursor.execute(
         """SELECT * FROM appdb.supplier WHERE id = %s""",
@@ -98,7 +98,7 @@ class DatabaseControllerFlight():
             return{"error":"proveedor no encontrado"}
    
     def insert_supplier(self, supplier:Supplier ):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         cursor = connection.cursor()
         cursor.execute("""INSERT INTO  appdb.supplier(
         Name,
@@ -122,7 +122,7 @@ class DatabaseControllerFlight():
 
      
     def edit_supplier(self,supplier:Supplier ):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         cursor = connection.cursor()
         cursor.execute("""SELECT * FROM appdb.supplier WHERE ID = %s""", (supplier.id,))
         result = cursor.fetchone()
@@ -151,7 +151,7 @@ class DatabaseControllerFlight():
         return supplierj
 
     def edit_flight(self, flight:Standartclass or Firstclass):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         cursor = connection.cursor()
         cursor.execute(
         """SELECT * FROM appdb.supplier WHERE id = %s""",
@@ -275,7 +275,7 @@ class DatabaseControllerFlight():
             return{"error": "proveedor no encontrado"}
                         
     def delete_flight(self, id: int, class_type: str):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         """
         Delete a flight from database
         """
@@ -314,7 +314,7 @@ class DatabaseControllerFlight():
             return {"error":"tipo de vuelo no encontrado"}
     
     def delete_supplier(self, id:int):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         """
         Delete a supplier from database
         """
@@ -336,7 +336,7 @@ class DatabaseControllerFlight():
             return {"error":"proveedor no encontrado"}        
             
     def show_flight(self, table_name:str,id:str ):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         cursor = connection.cursor()
         try:
             if table_name == "all":
@@ -399,7 +399,7 @@ class DatabaseControllerFlight():
             return{"message":"datos no encontrados"}
 
     def show_supplier(self,id:str):
-        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='appservermontoya.database.windows.net',database='appdb',port='1433')
+        connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
         cursor = connection.cursor()
         if id == "all":
             cursor.execute(
