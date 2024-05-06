@@ -1,24 +1,26 @@
-# Utiliza una versión estable de Python como base
+# Usa la imagen oficial de Python como base
 FROM python:3.10
 
-# Establece variables de entorno
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Set an environment variable to enable unbuffered stdout and stderr
 ENV PYTHONUNBUFFERED=1
 
-# Establece el directorio de trabajo en el contenedor
+# Set the working directory in the container to /app
 WORKDIR /app
 
-# Copia el archivo requirements.txt al directorio de trabajo
+# Copy the requirements.txt file from the build context to the container's working directory
 COPY requirements.txt .
 
-# Instala las dependencias directamente en el entorno base
+# Create a virtual environment named venv using the python interpreter
+RUN python -m venv venv
+
+RUN /bin/bash -c "source venv/bin/activate"
+
 RUN pip install -r requirements.txt
 
-# Copia el resto de los archivos de la aplicación
-COPY . /app
-
-# Expone el puerto 8000 (ajústalo según tus necesidades)
+COPY . .
+# Make port 8000 available to the world outside this container
 EXPOSE 8000
 
-# Comando para ejecutar la aplicación
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
