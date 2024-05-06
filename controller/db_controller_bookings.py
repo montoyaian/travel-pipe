@@ -4,8 +4,6 @@ import mysql.connector
 
 DELETE_SUCCESS = {"message": "eliminacion completa"}
 
-connection =mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
-cursor = connection.cursor()
 class DatabaseControllerBokings():
 
     """
