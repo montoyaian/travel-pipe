@@ -6,7 +6,7 @@ FROM python:3.11
 WORKDIR /app
 
 # Copy the requirements.txt file from the build context to the container's working directory
-COPY . .
+COPY ./ .
 
 
 RUN pip install -r requirements.txt
