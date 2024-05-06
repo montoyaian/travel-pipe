@@ -8,8 +8,6 @@ import jwt
 
 from models.client_model import *
 
-connection = mysql.connector.connect(user='sqladmin',password='Azure@123',host='localhost',database='appdb',port='1433')
-cursor = connection.cursor()
 
 DELETE_SUCCESS = {"message": "eliminacion completa"}
 class DatabaseControllerClient():
