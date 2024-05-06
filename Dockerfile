@@ -6,12 +6,11 @@ FROM python:3.11
 WORKDIR /app
 
 # Copy the requirements.txt file from the build context to the container's working directory
-COPY requirements.txt .
+COPY . .
 
 
 RUN pip install -r requirements.txt
 
-COPY . .
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
