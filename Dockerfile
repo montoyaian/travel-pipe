@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn:python3.11
 
-COPY. /app
+COPY . /app
 
 WORKDIR /app
 
